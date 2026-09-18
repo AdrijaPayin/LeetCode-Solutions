@@ -4,10 +4,8 @@ public:
         string s1 = "";
         string s2 = "";
 
-        for (string& s : word1)
-            s1 += s;
-        for (string& s : word2)
-            s2 += s;
+        for (string& s : word1) s1 += s;
+        for (string& s : word2) s2 += s;
 
         return s1 == s2;
     }
