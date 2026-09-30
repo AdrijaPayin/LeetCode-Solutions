@@ -1,23 +1,19 @@
 class Solution {
 public:
-    int M = 1e9 + 7;
+    int M = 1e9+7;
 
     int specialTriplets(vector<int>& nums) {
-        unordered_map<int, int> l, r;
+        unordered_map<int, int> valid_i, valid_j;
 
         int result = 0;
 
-        for (int& num : nums) r[num]++;
-        
-        for (int& num : nums) {
-            r[num]--;
-
-            int left = l[num * 2];
-            int right = r[num * 2];
-
-            result = (result + (1LL * left * right)) % M;
-
-            l[num]++;
+        for(int &num : nums) {
+            
+            if(num%2 == 0) 
+                result = (result + valid_j[num/2]) % M;
+            
+            valid_j[num] = (valid_j[num] + valid_i[num*2]) % M;
+            valid_i[num]++;
         }
 
         return result;
